@@ -1,0 +1,21 @@
+# Jupyter image for the multimodal ETL notebooks
+# Installs project dependencies at build time for faster startup.
+
+FROM jupyter/minimal-notebook:python-3.10
+
+USER root
+
+# Install uv (fast resolver) and project dependencies
+RUN pip install --no-cache-dir uv
+
+# Copy project files (Compose will mount over this for live development)
+COPY . /home/jovyan/work
+
+# Install project dependencies into the system environment (editable for live code)
+RUN uv pip install --system -e /home/jovyan/work
+
+# Set working directory
+WORKDIR /home/jovyan/work
+
+# Disable token/password for local dev and allow all origins
+CMD ["start-notebook.sh", "--NotebookApp.token=", "--NotebookApp.password=", "--NotebookApp.allow_origin=*", "--NotebookApp.disable_check_xsrf=True"]

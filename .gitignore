@@ -1,0 +1,77 @@
+
+
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.env
+.env.*
+venv/
+.venv/
+env/
+ENV/
+*.log
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Cache and temporary files
+.cache/
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+docker/*.log
+docker-compose.override.yml
+**/tmp/
+**/logs/
+**/__pycache__/
+
+# Airflow
+airflow_home/
+logs/
+dags/__pycache__/
+airflow-webserver.pid
+
+# VSCode & JetBrains
+.vscode/
+.idea/
+
+# Build / dist
+build/
+dist/
+*.tar.gz
+
+# Reports and outputs
+docs/*.pdf
+docs/*.html
+docs/*.png
+docs/*.svg
+!docs/schema.png
+!docs/schema.svg
+!docs/schema.mmd
+
+# Tests
+.pytest_cache/
+coverage/
+.coverage
+*.cover
+*.pytest_cache
+
+# Node/npm (in case front-end tools are used later)
+node_modules/
+package-lock.json
+
+# Misc
+*.swp
+*.swo
+*.orig

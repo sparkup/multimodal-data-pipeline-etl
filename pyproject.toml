@@ -1,0 +1,34 @@
+[project]
+name = "multimodal-data-pipeline-etl"
+version = "0.1.0"
+description = "Multimodal ETL pipeline with Airflow"
+authors = [
+    { name = "David Worsley-Tonks", email = "hello@sparkup.dev" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "apache-airflow==2.9.0",
+    "pandas",
+    "matplotlib",
+    "requests",
+    "pathlib",
+    "beautifulsoup4",
+    "feedparser",
+    "newspaper3k",
+    "pydub",
+    "yt-dlp",
+    "imagehash",
+    "pillow",
+    "langdetect",
+    "sqlalchemy",
+    "psycopg2-binary",
+    "minio",
+    "tenacity",
+    "python-dotenv",
+    "polars",
+    "lxml_html_clean"
+]
+
+[tool.uv]

@@ -1,0 +1,72 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: airflow-postgres
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  minio:
+    image: minio/minio
+    container_name: airflow-minio
+    command: server /data --console-address ":9001"
+    env_file:
+      - .env
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
+  airflow-webserver:
+    build: .
+    container_name: airflow-webserver
+    depends_on:
+      - postgres
+      - minio
+    env_file:
+      - .env
+    volumes:
+      - ./src/dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+    ports:
+      - "8080:8080"
+    command: webserver
+
+  airflow-scheduler:
+    build: .
+    container_name: airflow-scheduler
+    depends_on:
+      - postgres
+      - airflow-webserver
+    env_file:
+      - .env
+    volumes:
+      - ./src/dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+    command: scheduler
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyter
+    container_name: airflow-jupyter
+    depends_on:
+      - postgres
+      - minio
+    working_dir: /home/jovyan/work
+    env_file:
+      - .env
+    volumes:
+      - .:/home/jovyan/work
+    ports:
+      - "8888:8888"
+
+volumes:
+  postgres_data:
+  minio_data:

@@ -1,0 +1,30 @@
+erDiagram
+    SOURCE {
+        int id PK "Primary Key"
+        string name
+        string url
+    }
+    ARTICLE {
+        int id PK "Primary Key"
+        int source_id FK "Foreign Key to Source"
+        string title
+        string text
+        datetime published_at
+        string label "Fake or Real"
+    }
+    IMAGE {
+        int id PK "Primary Key"
+        int article_id FK "Foreign Key to Article"
+        string image_url
+        string image_object "Description or object detected in image"
+    }
+    METADATA {
+        int id PK "Primary Key"
+        int article_id FK "Foreign Key to Article"
+        string key
+        string value
+    }
+
+    SOURCE ||--o{ ARTICLE : "publishes"
+    ARTICLE ||--o{ IMAGE : "has"
+    ARTICLE ||--o{ METADATA : "has"

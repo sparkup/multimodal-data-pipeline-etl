@@ -1,0 +1,25 @@
+sources:
+  - name: Reddit World News
+    type: rss
+    enabled: true
+    url: https://www.reddit.com/r/worldnews/.rss
+
+  - name: Snopes Fact Checks
+    type: rss
+    enabled: true
+    url: https://www.snopes.com/feed/
+
+  - name: PolitiFact
+    type: rss
+    enabled: true
+    url: https://www.politifact.com/rss/factchecks/
+
+  - name: FakeNewsNet
+    type: api
+    enabled: false
+    url: https://www.fakenewsnet.org/api
+
+  - name: Kaggle Fakeddit
+    type: html
+    enabled: false
+    url: https://www.kaggle.com/datasets/sqrd/fakeddit
